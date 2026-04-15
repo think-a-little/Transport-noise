@@ -20,6 +20,16 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+# Подключаем QCustomplot
+INCLUDEPATH += $$PWD/libs/qcustomplot
+LIBS += -L$$PWD/libs/qcustomplot
+
+# Для Windows (статическая библиотека)
+win32: LIBS += -lqcustomplot
+
+# Для Linux/Mac (используется заголовочный файл)
+unix: DEFINES += Q_WS_X11
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
