@@ -1,34 +1,36 @@
-QT       += core gui
+QT       += core gui widgets printsupport # <-- Добавили printsupport!
+# Модуль printsupport нужен для функций QPrinter внутри QCustomPlot
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     ../parcer/Transport-noise/src/parser.cpp \
     main.cpp \
     mainwindow.cpp
 
+# УДАЛИТЕ СТРОКУ НИЖЕ:
+# $$PWD/libs/qcustomplot/qcustomplot.cpp
+# Мы больше не компилируем исходники библиотеки вручную
+
 HEADERS += \
     ../parcer/Transport-noise/src/parser.h \
     mainwindow.h
 
+# УДАЛИТЕ СТРОКУ НИЖЕ:
+# $$PWD/libs/qcustomplot/qcustomplot.h
+# Заголовки подключаются через INCLUDEPATH
+
 FORMS += \
     mainwindow.ui
 
-# Подключаем QCustomplot
-INCLUDEPATH += $$PWD/libs/qcustomplot
-LIBS += -L$$PWD/libs/qcustomplot
+# --- НАСТРОЙКА ПОДКЛЮЧЕНИЯ ГОТОВОЙ БИБЛИОТЕКИ ---
+INCLUDEPATH += $$PWD/libs/qcustomplot # Путь к .h файлам
 
-# Для Windows (статическая библиотека)
-win32: LIBS += -lqcustomplot
-
-# Для Linux/Mac (используется заголовочный файл)
-unix: DEFINES += Q_WS_X11
+# Указываем путь к папке с .a файлом.
+# Если вы собираете проект в режиме Debug, используйте 'debug', если Release - 'release'.
+unix:LIBS += -L$$PWD/libs/qcustomplot/build/Desktop-Debug -lqcustomplot
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

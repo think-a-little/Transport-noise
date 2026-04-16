@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "qcustomplot.h"
+#include "libs/qcustomplot/qcustomplot.h"
+#include "../parcer/Transport-noise/src/parser.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,5 +21,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QCustomPlot *customPlot; // Объявляем указатель на график
+
+    void setupPlot(); // Функция для настройки интерфейса с графиком
+    void plotData(const ParsedData &data); // Функция для отрисовки данных
 };
 #endif // MAINWINDOW_H

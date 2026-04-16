@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "../parcer/Transport-noise/src/parser.h"
 
 #include <QApplication>
 
@@ -9,16 +8,19 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    const std::string filename = "/home/student/parcer/Transport-noise/st1_ac.00";
+    // try {
+    //     ParsedData data = parseFile("/home/student/parcer/Transport-noise/st1_ac.00");
 
-    try {
-        parseFile(filename);
-        return 0; // Успешное завершение
-    } catch (const std::exception &ex) {
-        // Выводим сообщение об ошибке в стандартный поток ошибок (stderr)
-        std::cerr << "[ОШИБКА] " << ex.what() << '\n';
-        return 1; // Код ошибки при завершении программы
-    }
+    //     // Теперь данные доступны в data.header и data.samples
+
+    //     // Пример вывода (для проверки)
+    //     qDebug() << "Частота:" << data.header.sampl_rate;
+
+    //     // Для построения графика передайте QVector<double> или std::vector<double> в ваш виджет
+
+    // } catch (const std::exception &e) {
+    //     qDebug() << "Ошибка парсинга:" << e.what();
+    // }
 
     return a.exec();
 }
