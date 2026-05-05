@@ -1,4 +1,4 @@
-QT       += core gui widgets printsupport # <-- Добавили printsupport!
+QT       += core gui widgets sql network printsupport # <-- Добавили printsupport!
 # Модуль printsupport нужен для функций QPrinter внутри QCustomPlot
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -10,17 +10,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp
 
-# УДАЛИТЕ СТРОКУ НИЖЕ:
-# $$PWD/libs/qcustomplot/qcustomplot.cpp
-# Мы больше не компилируем исходники библиотеки вручную
-
 HEADERS += \
     ../parcer/Transport-noise/src/parser.h \
     mainwindow.h
-
-# УДАЛИТЕ СТРОКУ НИЖЕ:
-# $$PWD/libs/qcustomplot/qcustomplot.h
-# Заголовки подключаются через INCLUDEPATH
 
 FORMS += \
     mainwindow.ui
